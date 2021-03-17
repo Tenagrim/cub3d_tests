@@ -6,7 +6,7 @@
 #    By: gshona <gshona@student.21-school.ru>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/17 14:04:59 by gshona            #+#    #+#              #
-#    Updated: 2021/03/17 18:54:11 by gshona           ###   ########.fr        #
+#    Updated: 2021/03/17 19:04:49 by gshona           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #!/bin/bash
@@ -22,16 +22,16 @@
 ############## USER SETTINGS ##########################
 
 #Root of project
-DIR="../cub_test"
+DIR="../cub3d"
 
 #Name of the executable
-EXEC_NAME="cub3d"
+EXEC_NAME="cub3D"
 
 #Path to sample to a valid map from DIR directory
-SAMPLE_MAP="maps/1.cub"
+SAMPLE_MAP="maps/map.cub"
 
 #Path to screenshot when executing with "--save" from DIR
-SCREENSHOT="picture.bmp"
+SCREENSHOT="bitmap.bmp"
 
 #######################################################
 
