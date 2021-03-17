@@ -6,10 +6,18 @@
 #    By: gshona <gshona@student.21-school.ru>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/17 14:04:59 by gshona            #+#    #+#              #
-#    Updated: 2021/03/17 18:53:21 by gshona           ###   ########.fr        #
+#    Updated: 2021/03/17 18:54:11 by gshona           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #!/bin/bash
+
+
+
+
+
+
+
+
 
 ############## USER SETTINGS ##########################
 
@@ -27,6 +35,12 @@ SCREENSHOT="picture.bmp"
 
 #######################################################
 
+
+
+
+
+
+
 ############# EXAMPLES ################################
 #
 # ./test.sh                    # run all maps
@@ -38,6 +52,22 @@ SCREENSHOT="picture.bmp"
 # ./test.sh --valid            # run only valid maps playable
 #
 #######################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 TEMPLATES="map_templates"
 SCREENSHOTS="screenshots"
