@@ -6,7 +6,7 @@
 #    By: gshona <gshona@student.21-school.ru>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/17 14:04:59 by gshona            #+#    #+#              #
-#    Updated: 2021/03/17 18:54:11 by gshona           ###   ########.fr        #
+#    Updated: 2021/03/17 19:47:28 by gshona           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #!/bin/bash
@@ -85,6 +85,7 @@ function single_map()
 	f=$(find map_templates -type f -name '*.cub' | grep $1 | head -n 1)
 	TESTNAME=$(basename $f | sed 's/\.cub//g')
 	echo "======================= " $TESTNAME " =========================\n"
+	#echo "single map: " $f
 	cp $f $MAP
 	SHOT=$(basename $f | sed 's/\.cub/\.bmp/g')
 	sed -i '' "s/NNNNN/$DIR_S\/$NO/g" map.cub
@@ -93,8 +94,10 @@ function single_map()
 	sed -i '' "s/SSSSS/$DIR_S\/$SO/g" map.cub
 	sed -i '' "s/SPSPSP/$DIR_S\/$S/g" map.cub
 	if (($DISPLAY_MAP == 1)); then
+		echo "=== filename: " $f " ==="
+		echo "========================="
 		cat $MAP
-		echo ''
+		echo "========================="
 	fi
 	$DIR/$EXEC_NAME $MAP $SAVE_KEY
 	if [[ $SAVE_KEY == '--save' ]]
@@ -121,7 +124,9 @@ function common_step()
 	sed -i '' "s/SSSSS/$DIR_S\/$SO/g" map.cub
 	sed -i '' "s/SPSPSP/$DIR_S\/$S/g" map.cub
 	if (($DISPLAY_MAP == 1)); then
+		echo "filename: " $f
 		cat $MAP
+		echo ''
 	fi
 	$DIR/$EXEC_NAME $MAP $SAVE_KEY
 	if (( $? != 0)); then
@@ -139,6 +144,20 @@ function common_step()
 	echo ''
 }
 
+
+for arg in $@ ; do
+	if [[ $(echo $arg | cut -c -2) == '--' ]] ; then
+	case $arg in
+		"--save")SAVE_KEY='--save';;
+		"--map")DISPLAY_MAP=1;;
+		"--valid")only_valid=1;skip=1;;
+		"--invalid")only_invalid=1;skip=1;;
+		"--undefined")only_undef=1;skip=1;;
+		*)echo "unrecognized key: " $arg; exit 2;;
+	esac
+fi
+done
+
 if [ -z $1 ]
 then
 SAVE_KEY=""
@@ -146,16 +165,6 @@ else
 	if [[ $(echo $1 | cut -c -2) == '--' ]]
 	then
 		echo ''
-		for arg in $@ ; do
-			case $arg in
-				"--save")SAVE_KEY='--save';;
-				"--map")DISPLAY_MAP=1;;
-				"--valid")only_valid=1;skip=1;;
-				"--invalid")only_invalid=1;skip=1;;
-				"--undefined")only_undef=1;skip=1;;
-				*)echo "unrecognized key: " $arg; exit 2;;
-			esac
-		done
 	else
 		if [[ -z $(find map_templates -type f -name '*.cub' | grep $1) ]]; then
 			echo "Unknown argument " $1
