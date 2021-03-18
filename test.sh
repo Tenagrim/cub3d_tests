@@ -6,7 +6,7 @@
 #    By: gshona <gshona@student.21-school.ru>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/17 14:04:59 by gshona            #+#    #+#              #
-#    Updated: 2021/03/18 13:15:12 by gshona           ###   ########.fr        #
+#    Updated: 2021/03/18 13:24:05 by gshona           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #!/bin/bash
@@ -42,6 +42,11 @@ SCREENSHOT="picture.bmp"
 #		--invalid	# runs cub3D with only invalid maps
 #		--undefined	# runs cub3D with only maps wich are nither valid nor invalid
 #		--leaks		# runs cub3D and checks leaks (not implemented yet)
+#
+#
+#		If you want to check leaks
+#		just run this script without --save flag
+#		and keep game window opened for few seconds
 #
 #######################################################
 
@@ -85,6 +90,7 @@ only_undef=0
 skip=0
 check_leaks=0
 map_count=0
+save_f=0
 
 function single_map()
 {
@@ -131,7 +137,7 @@ function common_step()
 for arg in $@ ; do
 	if [[ $(echo $arg | cut -c -2) == '--' ]] ; then
 	case $arg in
-		"--save")SAVE_KEY='--save';;
+		"--save")SAVE_KEY='--save'; save_f=1;;
 		"--map")DISPLAY_MAP=1;;
 		"--leaks")check_leaks=1;;
 		"--valid")only_valid=1;skip=1;;
@@ -143,10 +149,21 @@ fi
 done
 
 
-
+if (( save_f == 0 && check_leaks )); then
+	echo "Leaks may be checked only in playable mode"
+	echo "If you want to check leaks just run this script without --save flag and keep game window opened for few seconds"
+	exit 4
+fi
 
 
 make -C $DIR
+
+if test -f "$DIR/$EXEC_NAME"; then
+	echo "Executable found"
+else
+	echo "EXECUTABLE NOT FOUND"
+fi
+
 mkdir $SCREENSHOTS 2> /dev/null
 SAMPLE=$DIR/$SAMPLE_MAP
 
