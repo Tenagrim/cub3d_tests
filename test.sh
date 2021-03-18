@@ -6,32 +6,34 @@
 #    By: gshona <gshona@student.21-school.ru>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/17 14:04:59 by gshona            #+#    #+#              #
-#    Updated: 2021/03/18 13:24:05 by gshona           ###   ########.fr        #
+#    Updated: 2021/03/18 14:25:55 by gshona           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #!/bin/bash
 
 ############## USER SETTINGS ##########################
-
+#
 #Root of project
-DIR="../cub3d"
-
-
+ DIR="../cub3d"
+#
+#
 #Name of the executable
-EXEC_NAME="cub3d"
-
-
-
+ EXEC_NAME="cub3d"
+#
+#
+#
 #Path to sample to a valid map from DIR directory
-SAMPLE_MAP="maps/1.cub"
+ SAMPLE_MAP="maps/1.cub"
 # for example: if your executable is in DIR and your map is in DIR/maps
 # then thi value must be maps/map.cub
-
-
-
+#
+#
+#
 #Name of screenshot which generated when executing with "--save" from DIR
-SCREENSHOT="picture.bmp"
-
+ SCREENSHOT="picture.bmp"
+# for exmple: if your cub3D drops the image to the same dir where executeble is located
+# then this value must be only name of the image
+#
 #######################################################
 
 ############# KEYS ####################################
